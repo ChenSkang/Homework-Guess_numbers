@@ -2,11 +2,14 @@
   <div id="head">
     <div class="title">猜数字</div>
     <ul class="menus">
-      <li class="list" :class="{select:mains[0].change}" @click="changed(0)"><span class="line" v-if="mains[0].change"></span>游戏</li>
+      <router-link to="/home/game"><li class="list" :class="{select:mains[0].change}" @click="changed(0)"><span class="line" v-if="mains[0].change"></span>游戏</li></router-link>
       <li class="list" :class="{select:mains[1].change}" @click="changed(1)"><span class="line" v-if="mains[1].change"></span>排行</li>
       <li class="list" :class="{select:mains[2].change}" @click="changed(2)"><span class="line" v-if="mains[2].change"></span>模式</li>
       <li class="list" :class="{select:mains[3].change}" @click="changed(3)"><span class="line" v-if="mains[3].change"></span>帮助</li>
     </ul>
+    <div class="main">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

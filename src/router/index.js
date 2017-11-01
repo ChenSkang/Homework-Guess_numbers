@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import Guess from '@/games/guess'
+import Home from '@/games/home'
+import Maingame from '@/games/maingame'
 
 Vue.use(Router)
 
@@ -13,8 +14,12 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/guess',
-      component: Guess
+      path: '/home',
+      component: Home,
+      children: [{
+        path: 'game',
+        component: Maingame
+      }]
     }
   ]
 })
