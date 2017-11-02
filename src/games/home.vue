@@ -83,4 +83,8 @@
     position: absolute;
     bottom: 20px;
   }
+  .main{
+    margin-top: 50px;
+    margin-left: 15%;
+  }
 </style>
