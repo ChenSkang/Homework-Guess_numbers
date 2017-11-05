@@ -31,11 +31,11 @@
     color: #5A5E66;
   }
   .name-body{
-    width: 55%;
+    border: 1px solid #D8DCE5;
+    width: 65%;
     height: 500px;
-    background-color: gainsboro;
-    position: absolute;
-    left: 25%;
-    top: 140px;
+    position: relative;
+    top: -100px;
+    left: 10%;
   }
 </style>

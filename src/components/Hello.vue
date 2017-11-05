@@ -1,6 +1,6 @@
 <template>
 <div>
-<router-link to="/home">sdada</router-link>
+<router-link to="/home/game/basic">sdada</router-link>
 </div>
 </template>
 
