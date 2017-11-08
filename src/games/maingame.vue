@@ -1,7 +1,7 @@
 <template>
 <div class="">
   <ul class="menu">
-    <router-link to="/home/game/basic"><li class="menu-slc">基本模式</li></router-link>
+    <router-link to="/home/game/basic"><li class="menu-slc" @click="openBasic">基本模式</li></router-link>
     <router-link to="/home/game/challenge"><li class="menu-slc">挑战模式</li></router-link>
     <router-link to="/home/game/strength"><li class="menu-slc">实力模式</li></router-link>
   </ul>
@@ -16,6 +16,11 @@
     data () {
       return {
         msg: 'Welcome to Your Vue.js App'
+      }
+    },
+    methods: {
+      openBasic () {
+        this.$message('基本模式最多可以猜15次哦')
       }
     }
   }

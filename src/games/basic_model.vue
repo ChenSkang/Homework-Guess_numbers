@@ -1,7 +1,8 @@
 <template>
 <div>
   <el-button id="start" v-if="!if_start" @click="makeNumber">开始</el-button>
-  <div class="main">
+  <el-button id="restart" v-if="!if_start" @click="makeNumber">重新开始</el-button>
+  <div class="main" v-if="if_start">
     <div class="number">{{num}}</div>
     <el-input v-model="ipt" placeholder="请输入猜测的数字" id="gue-ipt">
       <el-button slot="append" @click="guessNumber">确定</el-button>
@@ -37,7 +38,6 @@
           }
         }
         this.num = this.arr.join('')
-        console.log(this.num)
       },
       guessNumber () {
         let x = 0
@@ -62,19 +62,11 @@
           }
           this.msg = x + 'A' + y + 'B'
         } else {
-          this.$confirm('您已经连续猜了15次，请重新开始', '失败', {
-            closeOnClickModal: false,
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            center: true
+          this.$alert('您已经连续猜了15次，游戏结束', '失败', {
+            confirmButtonText: '确定'
           }).then(() => {
             this.$message({
               type: 'info',
-              message: '新游戏'
-            })
-          }).catch(() => {
-            this.$message({
-              type: 'warning',
               message: '游戏结束'
             })
           })
