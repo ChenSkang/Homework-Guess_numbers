@@ -3,8 +3,8 @@
     <div class="title">猜数字</div>
     <ul class="menus">
       <router-link to="/home/game/basic"><li class="list" :class="{select:mains[0].change}" @click="changed(0)"><span class="line" v-if="mains[0].change"></span>游戏</li></router-link>
-      <li class="list" :class="{select:mains[1].change}" @click="changed(1)"><span class="line" v-if="mains[1].change"></span>排行</li>
-      <li class="list" :class="{select:mains[2].change}" @click="changed(2)"><span class="line" v-if="mains[2].change"></span>帮助</li>
+      <router-link to="/home/assist"><li class="list" :class="{select:mains[1].change}" @click="changed(1)"><span class="line" v-if="mains[1].change"></span>排行</li></router-link>
+      <router-link to="/home/ranking"><li class="list" :class="{select:mains[2].change}" @click="changed(2)"><span class="line" v-if="mains[2].change"></span>帮助</li></router-link>
     </ul>
     <div class="main">
       <router-view></router-view>
