@@ -1,13 +1,17 @@
 <template>
 <div>
-  <el-button id="start" v-if="!if_start" @click="makeNumber">开始</el-button>
-  <el-button id="restart" v-if="!if_start" @click="makeNumber">重新开始</el-button>
+  <span id="title-first" v-if="!if_start">基本模式</span>
+  <el-button id="start" v-if="!if_start" @click="makeNumber">游戏开始</el-button>
+  <el-button id="restart" v-if="game_over" @click="makeNumber">重新开始</el-button>
   <div class="main" v-if="if_start">
-    <div class="number">{{num}}</div>
-    <el-input v-model="ipt" placeholder="请输入猜测的数字" id="gue-ipt">
-      <el-button slot="append" @click="guessNumber">确定</el-button>
-    </el-input>
-    <div>提示:{{msg}}</div>
+    <div class="middle">
+      <div class="number">{{num}}</div>
+      <el-input v-model="ipt" placeholder="请输入猜测的数字" id="gue-ipt">
+        <el-button slot="append" @click="guessNumber">确定</el-button>
+      </el-input>
+      <div>提示:{{msg}}</div>
+      <div>您猜测的次数：{{n}}</div>
+    </div>
   </div>
 </div>
 </template>
@@ -16,6 +20,7 @@
   export default {
     data () {
       return {
+        game_over: false,
         n: 0,
         arr: [],
         num: 1234,
@@ -26,6 +31,10 @@
     },
     methods: {
       makeNumber () {
+        this.n = 0
+        this.ipt = ''
+        this.msg = ''
+        this.game_over = false
         this.if_start = true
         for (let i = 0; i <= 3; i++) {
           this.arr[i] = Math.floor(Math.random() * 10)
@@ -61,13 +70,14 @@
             y = 0
           }
           this.msg = x + 'A' + y + 'B'
-        } else {
-          this.$alert('您已经连续猜了15次，游戏结束', '失败', {
+        } else if (this.n === 16) {
+          this.game_over = true
+          this.$alert('您已经连续猜了16次，游戏结束', '失败', {
             confirmButtonText: '确定'
           }).then(() => {
             this.$message({
               type: 'info',
-              message: '游戏结束'
+              message: '此次游戏失败'
             })
           })
         }
@@ -77,20 +87,32 @@
 </script>
 
 <style scoped>
+  #title-first{
+    text-align: center;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    color: #878D99;
+  }
  #start{
    width: 80px;
    position: absolute;
-   top: 120px;
+   top: 200px;
    left: 50%;
    transform: translateX(-40px);
  }
  .number{
-
    width: 50%;
    background-color: #EDF2FC;
  }
  .main{
    text-align: center;
+ }
+ .middle{
+   margin-top: 250px;
+   transform: translateY(-50%);
  }
   #gue-ipt{
     width: 50%;
