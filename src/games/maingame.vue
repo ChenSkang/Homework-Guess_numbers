@@ -41,6 +41,6 @@
     height: 500px;
     position: relative;
     top: -100px;
-    left: 10%;
+    left: 15%;
   }
 </style>
