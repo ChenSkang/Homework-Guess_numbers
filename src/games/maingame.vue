@@ -3,7 +3,7 @@
   <ul class="menu">
     <router-link to="/home/game/basic"><li class="menu-slc" @click="openBasic">基本模式</li></router-link>
     <router-link to="/home/game/challenge"><li class="menu-slc">挑战模式</li></router-link>
-    <router-link to="/home/game/strength"><li class="menu-slc">实力模式</li></router-link>
+    <router-link to="/home/game/strength"><li class="menu-slc" @click="openStrength">实力模式</li></router-link>
   </ul>
   <div class="name-body">
     <router-view></router-view>
@@ -21,6 +21,9 @@
     methods: {
       openBasic () {
         this.$message('基本模式最多可以猜15次哦')
+      },
+      openStrength () {
+        this.$message('您需要连续进行三个数字的猜测')
       }
     }
   }
