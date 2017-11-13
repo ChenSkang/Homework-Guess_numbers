@@ -1,16 +1,19 @@
 <template>
 <div>
   <span id="title-first" v-if="!if_start">基本模式</span>
-  <el-button id="start" v-if="!if_start" @click="makeNumber">游戏开始</el-button>
-  <el-button id="restart" v-if="game_over" @click="makeNumber">重新开始</el-button>
+  <el-button id="start" v-if="!if_start" @click="makeNumber" type="primary">游戏开始</el-button>
   <div class="main" v-if="if_start">
     <div class="middle">
-      <div class="number">{{num}}</div>
-      <el-input v-model="ipt" placeholder="请输入猜测的数字" id="gue-ipt">
+      <div class="number" v-if="!show_answer">{{num}}</div>
+      <el-input v-model="ipt" placeholder="请输入猜测的数字" id="gue-ipt" @keyup.enter.native="guessNumber">
         <el-button slot="append" @click="guessNumber">确定</el-button>
       </el-input>
-      <div>提示:{{msg}}</div>
-      <div>您猜测的次数：{{n}}</div>
+      <div class="guide">提示:{{msg}}</div>
+      <div class="guess-num">当前猜测次数：{{n}}</div>
+      <el-row :gutter="20" class="gg-btn" v-if="game_over">
+        <el-col :span="12"><el-button @click="show_answer = true" type="primary">{{over_msg}}</el-button></el-col>
+        <el-col :span="12"><el-button @click="makeNumber">重新开始</el-button></el-col>
+      </el-row>
     </div>
   </div>
 </div>
@@ -20,20 +23,23 @@
   export default {
     data () {
       return {
+        over_msg: '',
+        show_answer: false,
         game_over: false,
         n: 0,
         arr: [],
         num: 1234,
         if_start: false,
         ipt: '',
-        msg: ''
+        msg: '0A0B'
       }
     },
     methods: {
       makeNumber () {
+        this.show_answer = false
         this.n = 0
         this.ipt = ''
-        this.msg = ''
+        this.msg = '0A0B'
         this.game_over = false
         this.if_start = true
         for (let i = 0; i <= 3; i++) {
@@ -68,10 +74,22 @@
           } else {
             x = 4
             y = 0
+            this.over_msg = '查看排行'
+            this.game_over = true
+            this.show_answer = true
+            this.$alert('恭喜！游戏成功，已为您查看排行榜信息', '成功', {
+              confirmButtonText: '确定'
+            }).then(() => {
+              this.$message({
+                type: 'info',
+                message: '游戏成功'
+              })
+            })
           }
           this.msg = x + 'A' + y + 'B'
         } else if (this.n === 16) {
           this.game_over = true
+          this.over_msg = '查看答案'
           this.$alert('您已经连续猜了16次，游戏结束', '失败', {
             confirmButtonText: '确定'
           }).then(() => {
@@ -116,5 +134,10 @@
  }
   #gue-ipt{
     width: 50%;
+  }
+  .gg-btn{
+    width: 50%;
+    transform: translateX(50%);
+    margin-top: 50px;
   }
 </style>
