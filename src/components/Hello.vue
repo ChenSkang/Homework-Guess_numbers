@@ -1,6 +1,6 @@
 <template>
-<div>
-<router-link to="/home/game/basic">sdada</router-link>
+<div id="main">
+  <div class="sign"><router-link to="/home/game/basic">Go to game</router-link></div>
 </div>
 </template>
 
@@ -15,5 +15,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .sign{
+    position: absolute;
+    top: 300px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
 </style>
