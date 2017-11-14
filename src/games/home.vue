@@ -10,6 +10,7 @@
     </ul>
   </div>
   <div class="main">
+    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510678888763&di=c068e72bd2759df1aaa1aa75117d312f&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F94%2F29%2F81H58PICSdX_1024.jpg" id="back" />
     <div class="main-body">
       <router-view></router-view>
     </div>
@@ -99,9 +100,14 @@
     position: absolute;
     top: 80px;
     bottom: 60px;
+    overflow: hidden;
+  }
+  #back{
+    width: 100%;
+    height: 620px;
   }
   .main-body{
-    width: 70%;
+    width: 60%;
     position: absolute;
     left: 20%;
     top: 100px;
