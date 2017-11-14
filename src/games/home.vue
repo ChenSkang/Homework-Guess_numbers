@@ -79,6 +79,7 @@
     border-bottom: 2px solid #20A0FF;
     position: absolute;
     bottom: 20px;
+
   }
   .main{
     margin-top: 50px;
