@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <ul class="menu">
       <li class="menu-slc" @click="showWindow(0)">游戏规则</li>
       <li class="menu-slc" @click="showWindow(1)">模式拓展</li>
