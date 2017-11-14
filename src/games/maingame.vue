@@ -1,5 +1,5 @@
 <template>
-<div class="">
+<div>
   <ul class="menu">
     <router-link to="/home/game/basic"><li class="menu-slc" @click="openBasic">基本模式</li></router-link>
     <router-link to="/home/game/strength"><li class="menu-slc" @click="openStrength">实力模式</li></router-link>
@@ -30,20 +30,21 @@
 </script>
 
 <style scoped>
-.menu{
-  width: 100px;
-}
+  .menu{
+    width: 100px;
+    height: 400px;
+  }
   .menu-slc{
     font-size: 18px;
     margin-top: 15px;
     color: #5A5E66;
   }
   .name-body{
-    border: 1px solid #EDF2FC;
-    width: 65%;
+    background: rgba(255, 255, 255, .5);
+    width: 80%;
     height: 400px;
-    position: relative;
-    top: -100px;
+    position: absolute;
     left: 15%;
+    top: 0;
   }
 </style>
