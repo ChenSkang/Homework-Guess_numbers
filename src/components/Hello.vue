@@ -3,7 +3,7 @@
   <div id="back">
     <img src="../img/star.png" id="my-img">
     <span class="title">Guess Numbers</span>
-    <router-link to="/home/game/basic"><span class="sign">Go to game</span></router-link>
+    <router-link to="/home/assist"><span class="sign">Go to game</span></router-link>
   </div>
 </div>
 </template>
@@ -49,7 +49,7 @@ export default {
     transition: all .3s linear;
   }
   .sign:hover{
-    color: #67C23A;
-    font-size: 30px;
+    color: #f4ea2a;
+    font-size: 31px;
   }
 </style>
