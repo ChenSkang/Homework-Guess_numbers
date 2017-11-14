@@ -2,8 +2,8 @@
 <div class="">
   <ul class="menu">
     <router-link to="/home/game/basic"><li class="menu-slc" @click="openBasic">基本模式</li></router-link>
-    <router-link to="/home/game/challenge"><li class="menu-slc">挑战模式</li></router-link>
     <router-link to="/home/game/strength"><li class="menu-slc" @click="openStrength">实力模式</li></router-link>
+    <router-link to="/home/game/challenge"><li class="menu-slc">挑战模式</li></router-link>
   </ul>
   <div class="name-body">
     <router-view></router-view>
@@ -39,9 +39,9 @@
     color: #5A5E66;
   }
   .name-body{
-    border: 1px solid #D8DCE5;
+    border: 1px solid #EDF2FC;
     width: 65%;
-    height: 500px;
+    height: 400px;
     position: relative;
     top: -100px;
     left: 15%;
