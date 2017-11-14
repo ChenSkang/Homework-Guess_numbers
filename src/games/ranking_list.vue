@@ -95,13 +95,10 @@
 </script>
 
 <style scoped>
-#rank{
-
-}
   .main{
+    background: rgba(255, 255, 255, .5);
     box-sizing: border-box;
-    border: 1px solid #EDF2FC;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: row;
   }
@@ -123,7 +120,7 @@
     line-height: 50px;
     color: #878d99;
     margin:20px 20px 0 20px;
-    background: #EDF2FC;
+    background: #DFE4ED;
   }
   ul{
     margin:0 20px 20px 20px;
@@ -133,9 +130,9 @@
     line-height: 50px;
     border-radius: 3px;
     transition:background-color 0.3s linear;
-      border-bottom: 1px solid #EDF2FC;
+    border-bottom: 1px solid #EDF2FC;
   }
   .list:hover{
-    background-color: #EDF2FC;
+    background-color: #DFE4ED;
   }
 </style>
