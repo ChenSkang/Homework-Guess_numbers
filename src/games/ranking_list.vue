@@ -7,34 +7,43 @@
         <el-col :span="6">排名</el-col>
         <el-col :span="6">玩家</el-col>
         <el-col :span="6">次数</el-col>
+        <el-col :span="6">挑战</el-col>
       </el-row>
       <ul>
-        <li v-for="(value, index) in basic">
-          <span>{{index+1}}</span>
-          <span>{{basic[index].name}}</span>
-          <span>{{basic[index].times}}</span>
-          <el-tooltip class="item" effect="dark" content="跟他耍耍！" placement="right">
-            <img src="../img/rank.png" />
-          </el-tooltip>
+        <li v-for="(value, index) in basic" class="list">
+          <el-row>
+            <el-col :span="6">{{index+1}}</el-col>
+            <el-col :span="6">{{basic[index].name}}</el-col>
+            <el-col :span="6">{{basic[index].times}}</el-col>
+            <el-col :span="6">
+              <el-tooltip class="item" effect="dark" content="跟他耍耍！" placement="right-end">
+                <el-button size="small">挑战</el-button>
+              </el-tooltip>
+            </el-col>
+          </el-row>
         </li>
       </ul>
     </div>
-    <div class="line"></div>
     <div class="ranking right">
       <p class="ranking-title">实力模式排行</p>
       <el-row class="title-row">
         <el-col :span="6">排名</el-col>
         <el-col :span="6">玩家</el-col>
         <el-col :span="6">总次数</el-col>
+        <el-col :span="6">挑战</el-col>
       </el-row>
       <ul>
-        <li v-for="(value, index) in strength">
-          <span>{{index+1}}</span>
-          <span>{{strength[index].name}}</span>
-          <span>{{strength[index].times}}</span>
-          <el-tooltip class="item" effect="dark" content="跟他耍耍！" placement="right">
-            <img src="../img/rank.png" />
-          </el-tooltip>
+        <li v-for="(value, index) in strength" class="list">
+          <el-row>
+            <el-col :span="6">{{index+1}}</el-col>
+            <el-col :span="6">{{strength[index].name}}</el-col>
+            <el-col :span="6">{{strength[index].times}}</el-col>
+            <el-col :span="6">
+              <el-tooltip class="item" effect="dark" content="跟他耍耍！" placement="right-end">
+                <el-button size="small">挑战</el-button>
+              </el-tooltip>
+            </el-col>
+          </el-row>
         </li>
       </ul>
     </div>
@@ -90,6 +99,8 @@
 
 }
   .main{
+    box-sizing: border-box;
+    border: 1px solid #EDF2FC;
     width: 80%;
     display: flex;
     flex-direction: row;
@@ -99,18 +110,32 @@
     text-align: center;
   }
   .ranking-title{
+    margin-top: 20px;
     font-size: 20px;
     color: #5A5E66;
   }
-  .line{
-    border: 1px solid;
-    width: 0;
-    height: 200px;
-  }
   .right{
-
+    border-left: 1px solid #EDF2FC;
   }
   .title-row{
+    border-radius: 3px;
+    height: 50px;
+    line-height: 50px;
     color: #878d99;
+    margin:20px 20px 0 20px;
+    background: #EDF2FC;
+  }
+  ul{
+    margin:0 20px 20px 20px;
+  }
+  .list{
+    height: 50px;
+    line-height: 50px;
+    border-radius: 3px;
+    transition:background-color 0.3s linear;
+    border-bottom: 1px solid #EDF2FC;
+  }
+  .list:hover{
+    background-color: #EDF2FC;
   }
 </style>
