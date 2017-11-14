@@ -133,7 +133,7 @@
     line-height: 50px;
     border-radius: 3px;
     transition:background-color 0.3s linear;
-    border-bottom: 1px solid #EDF2FC;
+      border-bottom: 1px solid #EDF2FC;
   }
   .list:hover{
     background-color: #EDF2FC;
