@@ -5,7 +5,7 @@
     <div class="main" v-if="if_start">
       <div class="middle">
         <div class="number" v-if="!show_answer">{{num}}</div>
-        <el-input v-model="ipt" placeholder="请输入猜测的数字" id="gue-ipt" @keyup.enter.native="guessNumber">
+        <el-input v-model="ipt" disabled="false" placeholder="请输入猜测的数字" id="gue-ipt" @keyup.enter.native="guessNumber">
           <el-button slot="append" @click="guessNumber">确定</el-button>
         </el-input>
         <div class="guide">提示:{{msg}}</div>
@@ -28,6 +28,7 @@
   export default {
     data () {
       return {
+        if_guess: false,
         how_many: 0,
         show_answer: false,
         game_over: false,
@@ -84,6 +85,7 @@
             this.show_answer = true
             if (this.how_many === 3) {
               this.game_over = false
+              this.if_guess = true
               this.$alert('恭喜！您完成了实力模式', '成功', {
                 confirmButtonText: '确定'
               }).then(() => {
@@ -93,12 +95,13 @@
                 })
               })
             } else {
+              this.if_guess = true
               this.$alert('恭喜！您猜出了此次结果', '成功', {
                 confirmButtonText: '确定'
               }).then(() => {
                 this.$message({
                   type: 'info',
-                  message: '已自动开始下次游戏'
+                  message: '请继续游戏'
                 })
               })
             }
