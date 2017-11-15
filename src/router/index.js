@@ -8,6 +8,7 @@ import Challenge from '@/games/challenge_model'
 import Strength from '@/games/strength_model'
 import Assistance from '@/games/assistance'
 import Ranking from '@/games/ranking_list'
+import Add from '@/games/add'
 
 Vue.use(Router)
 
@@ -33,6 +34,9 @@ export default new Router({
         }, {
           path: 'strength',
           component: Strength
+        }, {
+          path: 'add',
+          component: Add
         }]
       }, {
         path: 'assist',
