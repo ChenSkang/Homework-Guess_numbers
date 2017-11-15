@@ -17,7 +17,7 @@
             <el-col :span="6">{{basic[index].times}}</el-col>
             <el-col :span="6">
               <el-tooltip class="item" effect="dark" content="跟他耍耍！" placement="right-end">
-                <el-button size="small">挑战</el-button>
+                <el-button size="small" @click="challenge(index)">挑战</el-button>
               </el-tooltip>
             </el-col>
           </el-row>
@@ -40,7 +40,7 @@
             <el-col :span="6">{{strength[index].times}}</el-col>
             <el-col :span="6">
               <el-tooltip class="item" effect="dark" content="跟他耍耍！" placement="right-end">
-                <el-button size="small">挑战</el-button>
+                <el-button size="small" @click="open">挑战</el-button>
               </el-tooltip>
             </el-col>
           </el-row>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+  import bus from '../assets/bus'
   import ElCol from 'element-ui/packages/col/src/col'
   export default {
     components: {ElCol},
@@ -62,16 +63,16 @@
           times: 1
         }, {
           name: 'Sher',
-          times: 6
+          times: 2
         }, {
           name: 'Nobody',
-          times: 9
+          times: 3
         }, {
           name: 'Hi',
-          times: 12
+          times: 4
         }, {
           name: 'GuiZi',
-          times: 14
+          times: 5
         }],
         strength: [{
           name: 'Mr.Chen',
@@ -89,6 +90,33 @@
           name: 'GuiZi',
           times: 48
         }]
+      }
+    },
+    mounted () {
+      bus.$on('ranks', (p, l) => {
+        let v = []
+        this.basic.pop()
+        this.basic.unshift(v)
+        this.basic[l].name = '你没更改名字的权利'
+        this.basic[l].times = p
+        console.log(this.basic)
+      })
+    },
+    methods: {
+      challenge (index) {
+        let n = this.basic[index].times
+        bus.$emit('ranking', n)
+        this.$router.push('game/add')
+      },
+      open () {
+        this.$alert('还没这个功能呢，哈哈哈哈嗝', '错误', {
+          confirmButtonText: '确定'
+        }).then(() => {
+          this.$message({
+            type: 'info',
+            message: '挑战左边的！'
+          })
+        })
       }
     }
   }
