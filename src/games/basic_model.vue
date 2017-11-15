@@ -15,7 +15,7 @@
       <div class="guide">游戏提示：{{msg}}</div>
       <div class="guide">猜测次数：{{n}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
       <el-row :gutter="20" class="gg-btn" v-if="game_over">
-        <el-col :span="12"><el-button type="primary">查看排行</el-button></el-col>
+        <el-col :span="12"><router-link to="/home/ranking"><el-button type="primary">查看排行</el-button></router-link></el-col>
         <el-col :span="12"><el-button @click="makeNumber">重新开始</el-button></el-col>
       </el-row>
     </div>
@@ -24,9 +24,11 @@
 </template>
 
 <script>
+  import bus from '../assets/bus'
   export default {
     data () {
       return {
+        rank: [1, 2, 3, 4, 5],
         show_answer: false,
         game_over: false,
         n: 0,
@@ -34,7 +36,8 @@
         num: 1234,
         if_start: false,
         ipt: '',
-        msg: '0A0B'
+        msg: '0A0B',
+        q: 0
       }
     },
     methods: {
@@ -79,7 +82,7 @@
             y = 0
             this.game_over = true
             this.show_answer = true
-            this.$alert('恭喜！游戏成功，已为您查看排行榜信息', '成功', {
+            this.$alert('你很棒棒的，我看看你有没有进排行榜', '成功', {
               confirmButtonText: '确定'
             }).then(() => {
               this.$message({
@@ -87,11 +90,30 @@
                 message: '游戏成功'
               })
             })
+            if (this.n <= this.rank[4]) {
+              this.rank.pop()
+              for (let i = 0; i <= 3; i++) {
+                if (this.rank[i] <= this.n && this.rank[i + 1] >= this.n) {
+                  this.q = i + 1
+                  this.rank.splice(this.q, 0, this.n)
+                  console.log(this.rank)
+                  let l = this.q
+                  let p = this.n
+                  bus.$emit('ranks', p, l)
+                  break
+                }
+              }
+              let h = this.$createElement
+              this.$notify({
+                title: '排行榜',
+                message: h('i', {style: 'color: teal'}, '成功进入排行榜，还凑合')
+              })
+            }
           }
           this.msg = x + 'A' + y + 'B'
         } else if (this.n === 16) {
           this.game_over = true
-          this.$alert('您已经连续猜了16次，游戏结束', '失败', {
+          this.$alert('hhhh超过了，没次数了', '失败', {
             confirmButtonText: '确定'
           }).then(() => {
             this.$message({
